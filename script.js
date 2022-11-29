@@ -70,13 +70,23 @@ const makeVideoCard = (data)=>{
  const viewdetails = document.getElementById("views");
  const videocount = document.getElementById("videocount");
 
+//  subscriberCount.value = "10000";
+//  viewdetails.value = "600";
+//  videocount.value = "25";
+ const Userid = 'UCwJ0ddm6BweKtQxyRCi66sQ';
+ 
+
  let detailData = ()=>{
-    fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${'RIyBSebA4wQ&ab'}&key= ${api_key}`)
-    .then(Response =>{
-        return Response.json()
-    })
-    .then(data =>{
-        console.log(data);
-    })
+   fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${Userid}&key=${api_key}`)
+     .then(response => {
+         return response.json()
+     })
+     .then(data => {
+         console.log(data);
+         subscriberCount.value = data["items"][0].statistics.subscriberCount;
+         viewdetails.value = data["items"][0].statistics.viewCount;
+         videocount.value = data["items"][0].statistics.videoCount;
+         
+     })
  }
  detailData();
