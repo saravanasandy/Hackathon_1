@@ -90,3 +90,4 @@ const makeVideoCard = (data)=>{
      })
  }
  detailData();
+//
